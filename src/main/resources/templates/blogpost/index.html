@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	   <title>Blog Site</title>
+	   <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+	</head>
+	<body>
+	  <div class="container">
+	    <h1>Welcome to the Potluck!</h1>
+		
+		
+		<!-- Add in the <body> of your template -->
+		
+        <p>Please use the form below to submit a Blog Post:</p>
+        
+        <!--
+		 <form action="#" th:action="@{/}" th:object="${blogPost}" method="post">
+		    <table>
+			<tr>
+		            <td>Title</td>
+			    <td><input type="text" th:field="*{title}" /></td>
+			</tr>
+			<tr>
+			    <td>Author:</td>
+			    <td><input type="text" th:field="*{author}" /></td>
+			</tr>
+			<tr>
+		    	    <td>Blog Entry:</td>
+			    <td><input type="text" th:field="*{blogEntry}" /></td>
+			</tr>
+			<tr>
+			    <td><button type="submit">Submit Your Post</button></td>
+			</tr>
+		    </table>
+		</form>
+		-->
+		
+		<!-- Button to link to the new.html page -->
+		
+		<a th:href="@{/blogpost/new}"><button class= "btn btn-primary">
+           Submit a New Blog Post</button></a>
+           
+           
+		<div class="row">
+		  <div th:each="blog:${posts}">
+		    <div class="col-md-6">
+		      <div class="panel panel-success">
+		        <div class="panel-heading">
+		          <p th:text="${blog.title}"/>
+		        <div class="panel-body">
+		          <p th:text="${blog.author}"/>
+		          <p th:text="${blog.blogEntry}" />
+		        <div>
+		        <div class="panel-footer">
+		          <!-- Link to Update -->
+		          <!-- Link to Show  -->
+		          <form action="#" th:action="@{'/blogpost/show/{id}' (id=${blog.id})}" th:method="get"
+		                class="form-horizontal">
+		                <div class="form-group">
+		                  <!-- Does this input tag need to be here in order for the template to work properly -->
+		                  <input type="hidden" name="_method" value="get"></input>
+		                  <button type="submit" class="btn btn-primary btn-block" th:text="Show">Show</button>
+		                </div>
+		          </form>
+		          
+		          <!--  Link to Destroy -->
+		        </div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	</body>
+
+</html>
